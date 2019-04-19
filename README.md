@@ -149,32 +149,34 @@ Then test yourself with [this quiz](https://eqeq.js.org).
 It's your turn.  In this exercise you'll write your own replication of the == operator for primitive values 'number', 'string', 'boolean', 'null' and 'undefined'.  We've provided you with a whole bunch of test cases and a commented starter function.  It's up to you to do the rest!  (hint: try focusing on one test case at a time, pass it then move on to pass the next. also, the test cases are organized to match up with the three sections of the function)
 
 ```js
-// your function must pass all of these tests
+/* your function must pass all of these tests
 
-null, undefined            ->   true
-undefined, null            ->   true
-null, null                 ->   true
-undefined, undefined       ->   true
-null, (anything else)      ->   false
-undefined, (anything else) ->   false
+   null, undefined            ->   true
+   undefined, null            ->   true
+   null, null                 ->   true
+   undefined, undefined       ->   true
+   null, (anything else)      ->   false
+   undefined, (anything else) ->   false
 
-true, false                ->    false
-false, false               ->    true
-3, 3                       ->    true
-3.0, 3                     ->    true
-+0, -0                     ->    true
-"\t", '\t'                 ->    true
--3, +3                     ->    false
-     
-3, "3"                     ->    true
-"3", 3                     ->    true
-"3, "3"                    ->    true
-true, 1                    ->    true
-false, 0                   ->    true
-false, ""                  ->    true
-0, ""                      ->    true
-"e", true                  ->    false
-undefined, ""              ->    false
+   true, false                ->    false
+   false, false               ->    true
+   3, 3                       ->    true
+   3.0, 3                     ->    true
+   +0, -0                     ->    true
+   "\t", '\t'                 ->    true
+   -3, +3                     ->    false
+
+   3, "3"                     ->    true
+   "3", 3                     ->    true
+   "3, "3"                    ->    true
+   true, 1                    ->    true
+   false, 0                   ->    true
+   false, ""                  ->    true
+   0, ""                      ->    true
+   "e", true                  ->    false
+   undefined, ""              ->    false
+   
+*/
 ```
 
 [on pytut](http://www.pythontutor.com/live.html#code=/*%20your%20function%20must%20pass%20all%20of%20these%20tests%0A%20%20%0A%20%20null,%20undefined%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20true%0A%20%20undefined,%20null%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20true%0A%20%20null,%20null%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20true%0A%20%20undefined,%20undefined%20%20%20%20%20%20%20-%3E%20%20%20true%0A%20%20null,%20%28anything%20else%29%20%20%20%20%20%20-%3E%20%20%20false%0A%20%20undefined,%20%28anything%20else%29%20-%3E%20%20%20false%0A%20%20%0A%20%20true,%20false%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20false%0A%20%20false,%20false%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%203,%203%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%203.0,%203%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20%2B0,%20-0%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20%22%5Ct%22,%20'%5Ct'%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20-3,%20%2B3%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20false%0A%20%20%20%20%20%20%20%0A%20%203,%20%223%22%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20%223%22,%203%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20%223,%20%223%22%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20true,%201%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20false,%200%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20false,%20%22%22%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%200,%20%22%22%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20%22e%22,%20true%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20false%0A%20%20undefined,%20%22%22%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20false%0A*/%0A%0Aconst%20a%20%3D%20,%20b%20%3D%20%3B%0A%0Aconst%20native%20%3D%20a%20%3D%3D%20b%3B%0Aconst%20replication%20%3D%20lose_equality%28a,%20b%29%3B%0A%0Aconsole.assert%28native%20%3D%3D%3D%20replication,%20%22replication%20%3D%3D%3D%20%22%20%2B%20replication%29%3B%0A%0Afunction%20loose_equality%28x,%20y%29%20%7B%20%0A%20%20//%20if%20both%20a%20and%20b%20are%20null%20or%20undefined,%20return%20true%0A%20%20//%20if%20only%20one%20is%20null%20or%20undefined,%20return%20false%0A%0A%20%20//%20if%20both%20arguments%20are%20the%20same%20type%20%28num,%20string,%20or%20bool%29%0A%20%20//%20%20compare%20them%20with%20%3D%3D%3D%20and%20return%20the%20result%0A%0A%20%20//%20if%20both%20are%20not%20the%20same%20type%0A%20%20//%20%20make%20sure%20both%20are%20type%20'number'%0A%20%20//%20%20compare%20them%20with%20%3D%3D%3D,%20and%20return%20the%20result%0A%7D&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false)
