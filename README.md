@@ -138,9 +138,9 @@ function plus(x, y) {
 
 ### Study It
 
-Study [this comparison table](https://dorey.github.io/JavaScript-Equality-Table/)the quiz https://eqeq.js.org
-Play around with this [interactive table](https://janke-learning.org/equalities-coercion/).  
-Then test yourself with [this quiz](https://eqeq.js.org).
+Study [this comparison table](https://dorey.github.io/JavaScript-Equality-Table/).     
+Play around with this [interactive table](https://janke-learning.org/equalities-coercion/).    
+Then test yourself with [this quiz](https://eqeq.js.org).  
 
 
 
