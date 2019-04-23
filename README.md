@@ -12,6 +12,7 @@ Because emplicit coercion is 'simply' applying explicit coercion in a well-defin
     * [a + b](#a-plus-b)
     * [a + b + c](#a-plus-b-plus-c)
     * [a + (b + c)](#a--b--c)
+    * [+a](#plus-a)
 * [loose equality --> ==](#loose-equality)
     * [study it](#study-it)
     * [replicate it](#replicate-it)
@@ -129,6 +130,40 @@ function plus(x, y) {
   const replication = plus( a, plus(b, c));
 
   console.assert(native_plus === replication, replication);
+}
+```
+
+
+### plus a
+
+[on pytut](http://www.pythontutor.com/live.html#code=/*%20test%20cases%20%20%20%20%20%20%3A%20fill%20in%20the%20correct%20results%0A%20%20null%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20undefined%20%20%20-%3E%20%20%3F%0A%20%200%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%201%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20-1.5%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20NaN%20%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20Infinity%20%20%20%20-%3E%20%20%3F%0A%20%20%22%22%20%20%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20%22%20%22%20%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20%223%22%20%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20%223.3%22%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20%223%20%2B%203%22%20%20%20%20%20-%3E%20%20%3F%0A%20%20true%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20false%20%20%20%20%20%20%20-%3E%20%20%3F%0A*/%0A%0Aconst%20a%20%3D%20%20,%20b%20%3D%20%3B%0Aconst%20typeof_a%20%3D%20typeof%20a%3B%0Aconst%20typeof_b%20%3D%20typeof%20b%3B%0A%0Aconst%20native_plus%20%3D%20%2Ba%3B%0Aconst%20replication%20%3D%20Number%28a%29%3B%0A%0Aconsole.assert%28native_plus%20%3D%3D%3D%20replication,%20replication%29%3B&cumulative=false&heapPrimitives=nevernest&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false)
+```js
+{
+   /* test cases      : fill in the correct results
+     null        ->  ?
+     undefined   ->  ?
+     0           ->  ?
+     1           ->  ?
+     -1.5        ->  ?
+     NaN         ->  ?
+     Infinity    ->  ?
+     ""          ->  ?
+     " "         ->  ?
+     "3"         ->  ?
+     "3.3"       ->  ?
+     "3 + 3"     ->  ?
+     true        ->  ?
+     false       ->  ?
+   */
+
+   const a =  , b = ;
+   const typeof_a = typeof a;
+   const typeof_b = typeof b;
+
+   const native_plus = +a;
+   const replication = Number(a);
+
+   console.assert(native_plus === replication, replication);
 }
 ```
 
