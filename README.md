@@ -209,6 +209,7 @@ undefined, ""              ->    false
 
 * [avoid implicit coercion](https://eslint.org/docs/rules/no-implicit-coercion)
 * [plus demystified](https://dmitripavlutin.com/javascriptss-addition-operator-demystified/)
+* [javascript.info: comparisons](https://javascript.info/comparison)
 * [MDN equality comparison table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness) - ignore the bottom row and farthest right column
 * [codementor: double equals](https://www.codementor.io/javascript/tutorial/double-equals-and-coercion-in-javascript)
 * [a complete replication of ==](https://gist.github.com/qntm/d899c00aa1ac2c663ac6db23bcffcaba)
