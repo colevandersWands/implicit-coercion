@@ -1,17 +1,24 @@
 # Implicit Coercion
 
+Operators in JavaScript are designed to never throw errors.  This means that if you try to operate on values of different types, JS needs to do some work behind the scenes to avoid causing any errors.  That work is called __implicit coercion__.  JavaScript perform type conversions on the values before trying to compare, add, divide, whatever. 
 
+To understand implicit coercion, it's helpful to realize that the rules are same as with explicit coercion (Number(x), String(x), Boolean(z), void a) but just happens without you writing it by hand. 
+
+Because emplicit coercion is 'simply' applying explicit coercion in a well-defined way, the best way to understand implicit coercion is to try replicating native operators.
 
 ### Index:
-* [learning objectives](#learning-objectives)
-* [plus --> +](#plus)
+* example to study: [+](#plus)
     * [plus replicated](#plus-replicated)
     * [a + b](#a-plus-b)
     * [a + b + c](#a-plus-b-plus-c)
     * [a + (b + c)](#a--b--c)
-* [loose equality --> ==](#loose-equality)
-    * [study it](#study-it)
-    * [replicate it](#replicate-it)
+    * [+a](#plus-a)
+* exercise: [replicate ```==```](#replicate-loose-equality)
+    * [describing behavior](#describing-behavior)
+    * [run\_tests function](#run--tests-function)
+    * [test driven development](#test-driven-development)
+    * [study ```==```](#study-it)
+    * [replicate ```==```](#replicate-it)
 * [resources](#resources)
 
 ---
@@ -129,76 +136,193 @@ function plus(x, y) {
 }
 ```
 
+
+### plus a
+
+[on pytut](http://www.pythontutor.com/live.html#code=/*%20test%20cases%20%20%20%20%20%20%3A%20fill%20in%20the%20correct%20results%0A%20%20null%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20undefined%20%20%20-%3E%20%20%3F%0A%20%200%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%201%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20-1.5%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20NaN%20%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20Infinity%20%20%20%20-%3E%20%20%3F%0A%20%20%22%22%20%20%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20%22%20%22%20%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20%223%22%20%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20%223.3%22%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20%223%20%2B%203%22%20%20%20%20%20-%3E%20%20%3F%0A%20%20true%20%20%20%20%20%20%20%20-%3E%20%20%3F%0A%20%20false%20%20%20%20%20%20%20-%3E%20%20%3F%0A*/%0A%0Aconst%20a%20%3D%20%20,%20b%20%3D%20%3B%0Aconst%20typeof_a%20%3D%20typeof%20a%3B%0Aconst%20typeof_b%20%3D%20typeof%20b%3B%0A%0Aconst%20native_plus%20%3D%20%2Ba%3B%0Aconst%20replication%20%3D%20Number%28a%29%3B%0A%0Aconsole.assert%28native_plus%20%3D%3D%3D%20replication,%20replication%29%3B&cumulative=false&heapPrimitives=nevernest&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false)
+```js
+{
+   /* test cases      : fill in the correct results
+     null        ->  ?
+     undefined   ->  ?
+     0           ->  ?
+     1           ->  ?
+     -1.5        ->  ?
+     NaN         ->  ?
+     Infinity    ->  ?
+     ""          ->  ?
+     " "         ->  ?
+     "3"         ->  ?
+     "3.3"       ->  ?
+     "3 + 3"     ->  ?
+     true        ->  ?
+     false       ->  ?
+   */
+
+   const a =  , b = ;
+   const typeof_a = typeof a;
+   const typeof_b = typeof b;
+
+   const native_plus = +a;
+   const replication = Number(a);
+
+   console.assert(native_plus === replication, replication);
+}
+```
+
 [TOP](#implicit-coercion)
 
 ---
 
-## Loose Equality
+## Replicate Loose Equality
 
+
+## Describing Behavior
+
+Code's behavior is what has changed in your program _after_ the code has executed, implementation is the lines of text that make up the code.  This exercise will introduce how to understand behavior using __test cases__.
+
+Practically speaking you can think of test cases as just inputs and outputs.   What values went into the function, and what values come out of the function?  The test case will contain the input-output pairs that your function _should_ implement, a test case fails if the function returns something else.  
+
+Test cases may be relatively easy to read and use, but writing good ones can be tricky.  You have to think about all possible strange combinations and fringe cases. So don't worry about writing the perfect test cases yet, just do your best and compare with a friend to help each other understand how you thought of your test cases.
+
+For this exercise you will write test cases in this format:
+```js
+test_cases = [
+    {name:'meaningful name', args:['the inputs', 'for this snippet'], expected: 'what it should output'},
+    {name:'another test case', args:['different', 'inputs'], expected: 'the expected output'},
+  ];
+```
+
+[TOP](#implicit-coercion)
+
+---
+
+## run\_tests Function
+
+To check if your function passes all of it's test cases, we'll be using this function.  It takes two arguments (the function to test, and the test cases), and console.log's a message for every test case that fails.
+
+Study it for a minute then paste it in the console, the exercises below won't work otherwise.  If you don't understand entirely how this function works that's okay.  The main objective for this exercise is to write & use test cases, understand JS operators.  
+
+```js
+function run_tests(_target, _cases) {
+  console.groupCollapsed('<- click this arrow to see the function')
+  console.log(_target.toString());
+  console.groupEnd();
+  for (let t_case of _cases) {
+    
+    // prep variables for convenience
+    const expected = t_case.expected;
+    const args = t_case.args;
+    
+    // run function with test case
+    const actual = _target(...args);
+
+    // compare
+    let pass;
+    if (typeof expected === 'object' && expected !== null) {
+      const _actual = JSON.stringify(actual);
+      const _expected = JSON.stringify(expected);
+      pass = _actual === _expected;
+    } else if ( typeof expected === 'number' && isNaN(expected) ) {
+      pass = isNaN(actual) && typeof actual === 'number';
+    } else {
+      pass = actual === expected;
+    };
+
+    // communicate result to developer 
+    if (!pass) {
+      console.groupCollapsed(`%c  ${t_case.name}:`, 'color:red');
+      console.log(`%cactual: ${typeof actual},`, 'color:orange', actual);
+      console.log(`%cexpected: ${typeof expected},`, 'color:blue', expected);
+      console.groupEnd();
+    } else {
+      console.groupCollapsed(`%cPassed: ${t_case.name}!`, 'color:green');
+      console.log(`result: ${typeof actual},`, actual);
+      console.groupEnd();
+    };
+  };
+}
+```
+
+[TOP](#implicit-coercion)
+
+---
+
+## Test Driven Development
+
+Very briefly this is a development philosophy that says to write all the tests your code should pass, then write the code to pass the tests.  
+
+In the following exercise you will be practicing TDD by starting with the ```test_cases```, and then writing the ```==``` replication to pass the tests.
+
+For more info and TDD exercises [check this out](https://github.com/janke-learning/tdd).
+
+[TOP](#implicit-coercion)
+
+---
 
 ### Study It
 
-Study [this comparison table](https://dorey.github.io/JavaScript-Equality-Table/)the quiz https://eqeq.js.org
-Play around with this [interactive table](https://janke-learning.org/equalities-coercion/).  
-Then test yourself with [this quiz](https://eqeq.js.org).
+Study [this comparison table](https://dorey.github.io/JavaScript-Equality-Table/).     
+Play around with this [interactive table](https://janke-learning.org/equalities-coercion/).    
+Then test yourself with [this quiz](https://eqeq.js.org).  
 
 
 
-### Exercise
+### Replicate It
 
-It's your turn.  In this exercise you'll write your own replication of the == operator for primitive values 'number', 'string', 'boolean', 'null' and 'undefined'.  We've provided you with a whole bunch of test cases and a commented starter function.  It's up to you to do the rest!  (hint: try focusing on one test case at a time, pass it then move on to pass the next. also, the test cases are organized to match up with the three sections of the function)
+It's your turn.  In this exercise you'll write your own replication of the == operator for primitive values 'number', 'string', 'boolean', 'null' and 'undefined'.  We've provided you with a whole bunch of test cases and a commented starter function.  It's up to you to do the rest!  (hint: try focusing on one comment at a time, pass it then, move on to pass the next. also, the test cases are organized to match up with the three sections of the function)
 
+__Passing Test Cases:__ you will use these tests to develop your replication of ```==```.  Copy-paste them into the console and hit enter.  to make sure they are loaded type ```test_cases``` into the console.
 ```js
-// your function must pass all of these tests
-
-null, undefined            ->   true
-undefined, null            ->   true
-null, null                 ->   true
-undefined, undefined       ->   true
-null, (anything else)      ->   false
-undefined, (anything else) ->   false
-
-true, false                ->    false
-false, false               ->    true
-3, 3                       ->    true
-3.0, 3                     ->    true
-+0, -0                     ->    true
-"\t", '\t'                 ->    true
--3, +3                     ->    false
-     
-3, "3"                     ->    true
-"3", 3                     ->    true
-"3, "3"                    ->    true
-true, 1                    ->    true
-false, 0                   ->    true
-false, ""                  ->    true
-0, ""                      ->    true
-"e", true                  ->    false
-undefined, ""              ->    false
+test_cases = [
+  { name: 'null, undefined', args: [null, undefined], expected: true},
+  { name: 'undefined, null', args: [undefined, null], expected: true},
+  { name: 'null, null', args: [null, null], expected: true},
+  { name: 'undefined, undefined', args: [undefined, undefined], expected: true},
+  { name: 'null, "anything else"', args: [null, "anything else"], expected: false},
+  { name: 'undefined, "anything else"', args: [undefined, "anything else"], expected: false},
+  { name: 'true, false', args: [true, false], expected: false},
+  { name: 'false, false', args: [false, false], expected: true},
+  { name: '3, 3', args: [3, 3], expected: true},
+  { name: '3.0, 3', args: [3.0, 3], expected: true},
+  { name: '+0, -0', args: [+0, -0], expected: true},
+  { name: '"\t", "\t"', args: ["\t", '\t'], expected: true},
+  { name: '-3, +3', args: [-3, +3], expected: false},
+  { name: '3, "3"', args: [3, "3"], expected: true},
+  { name: '"3", 3', args: ["3", 3], expected: true},
+  { name: '"3", "3"', args: ["3", "3"], expected: true},
+  { name: 'true, 1', args: [true, 1], expected: true},
+  { name: 'false, 0', args: [false, 0], expected: true},
+  { name: 'false, ""', args: [false, ""], expected: true},
+  { name: '0, ""', args: [0, ""], expected: true},
+  { name: '"e", true', args: ["e", true], expected: false},
+  { name: 'undefined, ""', args: [undefined, ""], expected: false}
+];
 ```
 
-[on pytut](http://www.pythontutor.com/live.html#code=/*%20your%20function%20must%20pass%20all%20of%20these%20tests%0A%20%20%0A%20%20null,%20undefined%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20true%0A%20%20undefined,%20null%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20true%0A%20%20null,%20null%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20true%0A%20%20undefined,%20undefined%20%20%20%20%20%20%20-%3E%20%20%20true%0A%20%20null,%20%28anything%20else%29%20%20%20%20%20%20-%3E%20%20%20false%0A%20%20undefined,%20%28anything%20else%29%20-%3E%20%20%20false%0A%20%20%0A%20%20true,%20false%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20false%0A%20%20false,%20false%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%203,%203%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%203.0,%203%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20%2B0,%20-0%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20%22%5Ct%22,%20'%5Ct'%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20-3,%20%2B3%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20false%0A%20%20%20%20%20%20%20%0A%20%203,%20%223%22%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20%223%22,%203%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20%223,%20%223%22%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20true,%201%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20false,%200%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20false,%20%22%22%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%200,%20%22%22%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20true%0A%20%20%22e%22,%20true%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20false%0A%20%20undefined,%20%22%22%20%20%20%20%20%20%20%20%20%20%20%20%20%20-%3E%20%20%20%20false%0A*/%0A%0Aconst%20a%20%3D%20,%20b%20%3D%20%3B%0A%0Aconst%20native%20%3D%20a%20%3D%3D%20b%3B%0Aconst%20replication%20%3D%20lose_equality%28a,%20b%29%3B%0A%0Aconsole.assert%28native%20%3D%3D%3D%20replication,%20%22replication%20%3D%3D%3D%20%22%20%2B%20replication%29%3B%0A%0Afunction%20loose_equality%28x,%20y%29%20%7B%20%0A%20%20//%20if%20both%20a%20and%20b%20are%20null%20or%20undefined,%20return%20true%0A%20%20//%20if%20only%20one%20is%20null%20or%20undefined,%20return%20false%0A%0A%20%20//%20if%20both%20arguments%20are%20the%20same%20type%20%28num,%20string,%20or%20bool%29%0A%20%20//%20%20compare%20them%20with%20%3D%3D%3D%20and%20return%20the%20result%0A%0A%20%20//%20if%20both%20are%20not%20the%20same%20type%0A%20%20//%20%20make%20sure%20both%20are%20type%20'number'%0A%20%20//%20%20compare%20them%20with%20%3D%3D%3D,%20and%20return%20the%20result%0A%7D&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false)
+__Native Operation:__ Before moving on, copy-paste this code into the console and hit enter. Study the test results to build a first understanding of how ```==``` works. (if there are any red test cases, something went wrong!)
 ```js
-{
-  const a = , b = ;
-
-  const native = a == b;
-  const replication = lose_equality(a, b);
-
-  console.assert(native === replication, "replication === " + replication);
-
-  function loose_equality(x, y) { 
-    // if both a and b are null or undefined, return true
-    // if only one is null or undefined, return false
-
-    // if both arguments are the same type (num, string, or bool)
-    //  compare them with === and return the result
-
-    // if both are not the same type
-    //  make sure both are type 'number'
-    //  compare them with ===, and return the result
-  }
+function loose_equality(a, b) {
+  return a == b;
 }
+run_tests(loose_equality, test_cases);
+```
+
+__Your Replication:__ Your turn!  Paste the code below into the console and begin developing your own replication of the ```==``` operator. Write little bits of code at once and run the code frequently.  Try perhaps implementing one comment at a time or to pass one test case at a time.   
+Once you've passed all the tests, paste your code back into this markdown for studying later!
+```js
+function loose_replication(a, b) { 
+  // if both a and b are null or undefined, return true
+  // if only one is null or undefined, return false
+
+  // if both arguments are the same type (num, string, or bool)
+  //  compare them with === and return the result
+
+  // if both are not the same type
+  //  make sure both are type 'number'
+  //  compare them with ===, and return the result
+}
+run_tests(loose_replication, test_cases);
 ```
 
 [TOP](#implicit-coercion)
@@ -211,6 +335,7 @@ undefined, ""              ->    false
 * [plus demystified](https://dmitripavlutin.com/javascriptss-addition-operator-demystified/)
 * [javascript.info: comparisons](https://javascript.info/comparison)
 * [MDN equality comparison table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness) - ignore the bottom row and farthest right column
+* [interactive ```==``` table](https://janke-learning.org/equalities-coercion/)
 * [codementor: double equals](https://www.codementor.io/javascript/tutorial/double-equals-and-coercion-in-javascript)
 * [a complete replication of ==](https://gist.github.com/qntm/d899c00aa1ac2c663ac6db23bcffcaba)
 * [double vs. triple equals](https://codeburst.io/javascript-double-equals-vs-triple-equals-61d4ce5a121a)
