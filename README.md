@@ -21,6 +21,7 @@ Because emplicit coercion is 'simply' applying explicit coercion in a well-defin
 * [javascript.info: comparisons](https://javascript.info/comparison)
 * [MDN equality comparison table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness) - ignore the bottom row and farthest right column
 * [interactive ```==``` table](https://janke-learning.org/equalities-coercion/)
+* [interactive ```+``` table](https://janke-learning.org/arithmetic-coercion/)
 * [codementor: double equals](https://www.codementor.io/javascript/tutorial/double-equals-and-coercion-in-javascript)
 * [a complete replication of ==](https://gist.github.com/qntm/d899c00aa1ac2c663ac6db23bcffcaba)
 * [double vs. triple equals](https://codeburst.io/javascript-double-equals-vs-triple-equals-61d4ce5a121a)
