@@ -31,7 +31,7 @@ Explaining and talking about implicit coercion is certainly helpful, but the ult
 
 The function below replicates the behavior of the + operator on primitive types (num, str, bool, null, undefined).  Often the best way to understand a language feature is to replicate it's behavior by hand.  If your replication passes the same test cases as the + operator, you have understood.
 
-Before moving on the + exercises, study this function then copy-paste it into your console.  The exercises will break if it is not declared.
+> Before moving on to the ```+``` exercises, study this function then copy-paste it into your console.  The exercises will break if it is not declared.
 
 [parsonized plus function](https://janke-learning.github.io/parsonizer/?snippet=function%20plus%28x%2C%20y%29%20%7B%0A%20%20%0A%20%20if%20%28typeof%20x%20%3D%3D%3D%20%22string%22%20%7C%7C%20typeof%20y%20%3D%3D%3D%20%22string%22%29%20%7B%0A%20%20%20%20var%20x_coerced%20%3D%20String%28x%29%3B%0A%20%20%20%20var%20y_coerced%20%3D%20String%28y%29%3B%0A%20%20%7D%20else%20%7B%0A%20%20%20%20var%20x_coerced%20%3D%20Number%28x%29%3B%0A%20%20%20%20var%20y_coerced%20%3D%20Number%28y%29%3B%0A%20%20%7D%0A%0A%20%20return%20x_coerced%20%2B%20y_coerced%3B%0A%7D)
 ```js
