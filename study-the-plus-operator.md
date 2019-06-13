@@ -64,6 +64,7 @@ function plus(x, y) {
   const native_plus = a + b;
   const replication = plus(a, b);
 
+  console.log(typeof_a + ' + ' + typeof_b + ' -> ' + typeof native_plus);
   console.assert(native_plus === replication, replication);
 }
 ```
@@ -95,6 +96,7 @@ function plus(x, y) {
   const native_plus = a + b + c; // left to right
   const replication = plus( plus(a, b), c);
 
+  console.log(typeof_a+' + '+typeof_b+' + '+typeof_c+' -> '+typeof native_plus);
   console.assert(native_plus === replication, replication);
 }
 ```
@@ -126,6 +128,7 @@ function plus(x, y) {
   const native_plus = a + (b + c); // right to left
   const replication = plus( a, plus(b, c));
 
+  console.log(typeof_a+' + ('+typeof_b+' + '+typeof_c+') -> '+typeof native_plus);
   console.assert(native_plus === replication, replication);
 }
 ```
@@ -156,13 +159,13 @@ function plus(x, y) {
      false       ->  ?
    */
 
-   const a =  , b = ;
+   const a =  ;
    const typeof_a = typeof a;
-   const typeof_b = typeof b;
 
    const native_plus = +a;
    const replication = Number(a);
 
+   console.log('+'+typeof_a+' -> '+typeof native_plus);
    console.assert(native_plus === replication, replication);
 }
 ```
