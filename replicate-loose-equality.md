@@ -72,7 +72,7 @@ function run_tests(_target, _cases) {
       console.log(`%cexpected: ${typeof expected},`, 'color:blue', expected);
       console.groupEnd();
     } else {
-      console.groupCollapsed(`%cPassed: ${t_case.name}!`, 'color:green');
+      console.groupCollapsed(`%cPassed: ${t_case.name}`, 'color:green');
       console.log(`result: ${typeof actual},`, actual);
       console.groupEnd();
     };
