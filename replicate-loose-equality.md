@@ -46,9 +46,10 @@ function run_tests(_target, _cases) {
   console.groupCollapsed('<- click this arrow to see the function')
   console.log(_target.toString());
   console.groupEnd();
+
   for (let t_case of _cases) {
     
-    // prep variables for convenience
+    // create variables for readability
     const expected = t_case.expected;
     const args = t_case.args;
     
@@ -61,23 +62,25 @@ function run_tests(_target, _cases) {
       const _actual = JSON.stringify(actual);
       const _expected = JSON.stringify(expected);
       pass = _actual === _expected;
-    } else if ( typeof expected === 'number' && isNaN(expected) ) {
-      pass = isNaN(actual) && typeof actual === 'number';
+    } else if ( expected !== expected ) {
+      pass = actual !== actual;
     } else {
       pass = actual === expected;
     };
 
     // communicate result to developer 
-    if (!pass) {
-      console.groupCollapsed(`%c  ${t_case.name}:`, 'color:red');
-      console.log(`%cactual: ${typeof actual},`, 'color:orange', actual);
-      console.log(`%cexpected: ${typeof expected},`, 'color:blue', expected);
-      console.groupEnd();
+    if (pass) {
+      console.groupCollapsed(`%cPASS: ${t_case.name}`, 'color:green');
     } else {
-      console.groupCollapsed(`%cPassed: ${t_case.name}`, 'color:green');
-      console.log(`result: ${typeof actual},`, actual);
-      console.groupEnd();
+      console.groupCollapsed(`%c: ${t_case.name}`, 'color:red');
+      console.log("%cexpected: ",  'color:orange', typeof expected, expected);
     };
+
+    for (let i = 0; i < args.length; i++) {
+      console.log(`arg ${i+1}: ${typeof args[i]},`, args[i]);
+    }
+    console.log("%cactual: ", 'color:blue', typeof actual, actual);
+    console.groupEnd();
   };
 }
 ```
