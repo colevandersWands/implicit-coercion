@@ -1,7 +1,9 @@
 # Replicate Loose Equality
 
 
-["What I cannot create, I do not understand."](https://blog.codinghorror.com/when-understanding-means-rewriting/)
+["What I cannot create, I do not understand."](https://blog.codinghorror.com/when-understanding-means-rewriting/)  
+
+Gain a deeper understanding of implicit coercion and the tricky ```==``` operator by developing your own replication for primitive values onlu using a [TDD methodology](https://github.com/janke-learning/tdd).  
 
 
 ### Index
@@ -111,7 +113,7 @@ Then test yourself with [this quiz](https://eqeq.js.org).
 
 It's your turn.  In this exercise you'll write your own replication of the == operator for primitive values 'number', 'string', 'boolean', 'null' and 'undefined'.  We've provided you with a whole bunch of test cases and a commented starter function.  It's up to you to do the rest!  (hint: try focusing on one comment at a time, pass it then, move on to pass the next. also, the test cases are organized to match up with the three sections of the function)
 
-__Passing Test Cases:__ you will use these tests to develop your replication of ```==```.  Copy-paste them into the console and hit enter.  to make sure they are loaded type ```test_cases``` into the console.
+__Passing Test Cases:__ you will use these tests to develop your replication of ```==```.  Copy-paste them into the console and hit enter.  to make sure they are loaded type ```test_cases``` into the console. Feel free to add more passing test cases before moving on the replication!
 ```js
 test_cases = [
   { name: 'null, undefined', args: [null, undefined], expected: true},
@@ -165,6 +167,10 @@ run_tests(loose_replication, test_cases);
 ```
 
 [TOP](#replicate-loose-equality)
+
+---
+
+> [a complete replication of ```==```](https://gist.github.com/qntm/d899c00aa1ac2c663ac6db23bcffcaba), not just for primitives
 
 ___
 ___
