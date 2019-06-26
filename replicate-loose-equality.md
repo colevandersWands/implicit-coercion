@@ -73,13 +73,13 @@ function run_tests(_target, _cases) {
       console.groupCollapsed(`%cPASS: ${t_case.name}`, 'color:green');
     } else {
       console.groupCollapsed(`%c: ${t_case.name}`, 'color:red');
-      console.log("%cexpected: ",  'color:orange', typeof expected, expected);
+      console.log("%cactual: ",  'color:orange', typeof actual +", "+ actual);
     };
 
     for (let i = 0; i < args.length; i++) {
       console.log(`arg ${i+1}: ${typeof args[i]},`, args[i]);
     }
-    console.log("%cactual: ", 'color:blue', typeof actual, actual);
+    console.log("%cexpected: ", 'color:blue', typeof expected +", "+ expected);
     console.groupEnd();
   };
 }
@@ -146,27 +146,31 @@ test_cases = [
 
 __Native Operation:__ Before moving on, copy-paste this code into the console and hit enter. Study the test results to build a first understanding of how ```==``` works. (if there are any red test cases, something went wrong!)
 ```js
-function loose_equality(a, b) {
-  return a == b;
+{
+  function loose_equality(a, b) {
+    return a == b;
+  }
+  run_tests(loose_equality, test_cases);
 }
-run_tests(loose_equality, test_cases);
 ```
 
 __Your Replication:__ Your turn!  Paste the code below into the console and begin developing your own replication of the ```==``` operator. Write little bits of code at once and run the code frequently.  Try perhaps implementing one comment at a time or to pass one test case at a time.   
 Once you've passed all the tests, paste your code back into this markdown for studying later!
 ```js
-function loose_replication(a, b) { 
-  // if both a and b are null or undefined, return true
-  // if only one is null or undefined, return false
-
-  // if both arguments are the same type (num, string, or bool)
-  //  compare them with === and return the result
-
-  // if both are not the same type
-  //  make sure both are type 'number'
-  //  compare them with ===, and return the result
+{
+  function loose_replication(a, b) { 
+    // if both a and b are null or undefined, return true
+    // if only one is null or undefined, return false
+  
+    // if both arguments are the same type (num, string, or bool)
+    //  compare them with === and return the result
+  
+    // if both are not the same type
+    //  make sure both are type 'number'
+    //  compare them with ===, and return the result
+  }
+  run_tests(loose_replication, test_cases);
 }
-run_tests(loose_replication, test_cases);
 ```
 
 [TOP](#replicate-loose-equality)
