@@ -2,7 +2,7 @@
 
 Operators in JavaScript are designed to never throw errors.  This means that if you try to operate on values of different types, JS needs to do some work behind the scenes to avoid causing any errors.  That work is called __implicit coercion__.  JavaScript perform type conversions on the values before trying to compare, add, divide, whatever. 
 
-To understand implicit coercion, it's helpful to realize that the rules are same as with explicit coercion (Number(x), String(x), Boolean(z), void a) but just happens without you writing it by hand. 
+To understand implicit coercion, it's helpful to realize that the rules are same as with explicit coercion (Number(x), String(x), Boolean(z)) but just happens without you writing it by hand. 
 
 Because emplicit coercion is 'simply' applying explicit coercion in a well-defined way, the best way to understand implicit coercion is to try replicating native operators.
 
